@@ -21,7 +21,7 @@ eta:
 #          label-values:
 #            - value_for_name1
 #            - value_for_name22
-#          unit: iso units (grams, clesius ..); status -> is calculated by value - advTextOffset (also text is added as status label)
+#          unit: iso units (grams, celsius ..); status has special logic. It is calculated by (value - advTextOffset) additionally content of attribute text is added as label with name status (e.g. status = on)
         -
           uri: /120/10601/0/0/12197
           type: gauge
@@ -46,6 +46,12 @@ eta:
           type: gauge
           name: eta_store_consumed_since_ash_box_emptied_kg
           help: Pellets used from stock since ash box emptied
+          unit: kg
+        -
+          uri: /40/10021/0/0/12011
+          type: gauge
+          name: eta_boiler_hopper_content_kg
+          help: Pellets in the internal storage of the boiler unit
           unit: kg
         -
           uri: /40/10021/0/11042/2001
