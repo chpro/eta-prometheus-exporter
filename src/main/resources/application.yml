@@ -66,6 +66,30 @@ eta:
           name: eta_boiler_temperature_flow_celsius
           help: Indicates the temperature of the boiler flow 1
           unit: celsius
+        -
+          uri: /40/10021/0/11163/0
+          type: gauge
+          name: eta_boiler_temperature_return_flow_celsius
+          help: Indicates the temperature of the return riser mixing valve
+          unit: celsius
+        -
+          uri: /40/10021/0/0/12164
+          type: gauge
+          name: eta_boiler_residual_oxygen_percent
+          help: Indicates the residual oxygen in percent (e.g. 7.9)
+          unit: percent
+        -
+          uri: /40/10021/0/11110/0
+          type: gauge
+          name: eta_boiler_temperature_exhaust_celcius
+          help: The temperature of the exhaust (flue gas)
+          unit: celcius
+        -
+          uri: /40/10021/0/0/12165
+          type: gauge
+          name: eta_boiler_exhaust_fan_rpm
+          help: The exhaust fans rpm value
+          unit: rpm
 # buffer
         -
           uri: /120/10601/0/0/12528
@@ -116,6 +140,12 @@ eta:
           name: eta_heating_circuits_radiators_pump_status
           help: Indicates status of heating circuit pump for raditors. off (0.0) or on (1.0)
           unit: status
+        -
+          uri: /120/10101/0/0/13100
+          type: gauge
+          name: eta_heating_circuits_radiators_load_watt
+          help: Indicates the heating load of the radiators
+          unit: watt
 # living room info
         -
           uri: /120/10101/0/11237/2293
@@ -148,3 +178,9 @@ eta:
           name: eta_heating_circuits_underfloor_pump_status
           help: Indicates status of heating circuit pump for underfloor heating. off (0.0) or on (1.0)
           unit: status
+        -
+          uri: /120/10102/0/0/13100
+          type: gauge
+          name: eta_heating_circuits_underfloor_load_watt
+          help: Indicates the heating load of the underfloor heating
+          unit: watt
