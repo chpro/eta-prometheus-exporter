@@ -25,8 +25,8 @@ eta:
         -
           uri: /120/10601/0/0/12197
           type: gauge
-          name: eta_sys_outside_temperature_celsius
-          help: Outside temperature
+          name: eta_sys_outdoor_temperature_celsius
+          help: Outdoor temperature
           unit: celsius
 # Storage
         -
@@ -88,7 +88,7 @@ eta:
         -
           uri: /120/10601/0/11329/0
           type: gauge
-          name: eta_buffer_temperature_sensor_mid_buttom_celsius
+          name: eta_buffer_temperature_sensor_mid_bottom_celsius
           help: Indicates the buffer temperature at the mid bottom (3)
           unit: celsius
         -
