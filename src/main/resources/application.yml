@@ -110,6 +110,12 @@ eta:
           name: eta_heating_circuits_radiators_flow_temperature_celsius
           help: Indicates the temperature of the radiators flow
           unit: celsius
+        -
+          uri: /120/10101/0/0/13922
+          type: gauge
+          name: eta_heating_circuits_radiators_pump_status
+          help: Indicates status of heating circuit pump for raditors. off (0.0) or on (1.0)
+          unit: status
 # living room info
         -
           uri: /120/10101/0/11237/2293
@@ -136,3 +142,9 @@ eta:
           name: eta_heating_circuits_underfloor_flow_temperature_celsius
           help: Indicates the temperature of the underfloor heating flow
           unit: celsius
+        -
+          uri: /120/10102/0/0/13922
+          type: gauge
+          name: eta_heating_circuits_underfloor_pump_status
+          help: Indicates status of heating circuit pump for underfloor heating. off (0.0) or on (1.0)
+          unit: status
