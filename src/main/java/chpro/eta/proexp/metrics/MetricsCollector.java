@@ -3,7 +3,6 @@ package chpro.eta.proexp.metrics;
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.List;
 
