@@ -1,0 +1,138 @@
+micronaut:
+  application:
+    name: prometheusExporter
+netty:
+  default:
+    allocator:
+      max-order: 3
+      
+eta:
+  prometheus-exporter:
+    host: 192.168.1.177
+    metrics:
+#        -
+#          uri: /40/10201/0/0/12042
+#          type: counter | gauge
+#          name: name of the metric (if unit is given the name needs also to be suffixed with it)
+#          help: a detailed description for the metric
+#          label-names:
+#            - name1
+#            - name2
+#          label-values:
+#            - value_for_name1
+#            - value_for_name22
+#          unit: iso units (grams, clesius ..); status -> is calculated by value - advTextOffset (also text is added as status label)
+        -
+          uri: /120/10601/0/0/12197
+          type: gauge
+          name: eta_sys_outside_temperature_celsius
+          help: Outside temperature
+          unit: celsius
+# Storage
+        -
+          uri: /40/10201/0/0/12042
+          type: gauge
+          name: eta_store_stock_kg
+          help: Pellets stock
+          unit: kg
+        -
+          uri: /40/10021/0/0/12016
+          type: counter
+          name: eta_store_consumed_kg
+          help: Pellets consumed from stock in total
+          unit: kg
+        -
+          uri: /40/10021/0/0/12013
+          type: gauge
+          name: eta_store_consumed_since_ash_box_emptied_kg
+          help: Pellets used from stock since ash box emptied
+          unit: kg
+        -
+          uri: /40/10021/0/11042/2001
+          type: gauge
+          name: eta_boiler_vacuum_turbine_request_status
+          help: Indicates if vaccum turbine is off (0.0) or on (1.0)
+          unit: status
+# boiler
+        -
+          uri: /40/10021/0/0/12000
+          type: gauge
+          name: eta_boiler_status
+          help: Indicates status of boiler (e.g. 6.0 = Heating)
+          unit: status
+        -
+          uri: /40/10021/0/11058/0
+          type: gauge
+          name: eta_boiler_temperature_flow_celsius
+          help: Indicates the temperature of the boiler flow 1
+          unit: celsius
+# buffer
+        -
+          uri: /120/10601/0/0/12528
+          type: gauge
+          name: eta_buffer_charging_percentage
+          help: Indicates the charging percentage of the puffer (0-100)
+          unit: percentage
+        -
+          uri: /120/10601/0/11327/0
+          type: gauge
+          name: eta_buffer_temperature_sensor_top_celsius
+          help: Indicates the buffer temperature at the top (1)
+          unit: celsius
+        -
+          uri: /120/10601/0/11328/0
+          type: gauge
+          name: eta_buffer_temperature_sensor_mid_top_celsius
+          help: Indicates the buffer temperature at the mid top (2)
+          unit: celsius
+        -
+          uri: /120/10601/0/11329/0
+          type: gauge
+          name: eta_buffer_temperature_sensor_mid_buttom_celsius
+          help: Indicates the buffer temperature at the mid bottom (3)
+          unit: celsius
+        -
+          uri: /120/10601/0/11330/0
+          type: gauge
+          name: eta_buffer_temperature_sensor_bottom_celsius
+          help: Indicates the buffer temperature at the bottom (4)
+          unit: celsius
+# heating circuit 1 (HK) /120/10101
+        -
+          uri: /120/10101/0/11060/2002
+          type: gauge
+          name: eta_heating_circuits_radiators_status
+          help: Indicates status of heating circuit for raditors. off (0.0) or on (1.0)
+          unit: status
+        -
+          uri: /120/10101/0/11125/0
+          type: gauge
+          name: eta_heating_circuits_radiators_flow_temperature_celsius
+          help: Indicates the temperature of the radiators flow
+          unit: celsius
+# living room info
+        -
+          uri: /120/10101/0/11237/2293
+          type: gauge
+          name: eta_room_living_temperature_celsius
+          help: Indicates the tempreture in the living room
+          unit: celsius
+        -
+          uri: /120/10101/0/11237/2295
+          type: gauge
+          name: eta_room_living_humidity_rh
+          help: Indicates the relative humidity in the living room in percent (%rH)
+          unit: rh
+# heating circuit 2 (FBH) /120/10102
+        -
+          uri: /120/10102/0/11060/2002
+          type: gauge
+          name: eta_heating_circuits_underfloor_status
+          help: Indicates status of circuit for underflow heating. off (0.0) or on (1.0)
+          unit: status
+        -
+          uri: /120/10102/0/11125/0
+          type: gauge
+          name: eta_heating_circuits_underfloor_flow_temperature_celsius
+          help: Indicates the temperature of the underfloor heating flow
+          unit: celsius
