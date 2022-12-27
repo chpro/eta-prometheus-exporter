@@ -30,7 +30,7 @@ eta:
           unit: celsius
 # Storage
         -
-          uri: /40/10201/0/0/12042
+          uri: /40/10201/0/0/12015
           type: gauge
           name: eta_store_stock_kg
           help: Pellets stock

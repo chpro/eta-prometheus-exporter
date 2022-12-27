@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class MetricsCollector extends Collector {
     @Override
     public List<MetricFamilySamples> collect() {
         LOG.info(String.format("Starting to collect %d metrics", metrics.getMetrics().size()));
-        return metrics.getMetrics().stream().map(metric -> createFamilySample(metric)).toList();
+        return metrics.getMetrics().stream().map(metric -> createFamilySample(metric)).collect(Collectors.toList());
     }
 
     protected MetricFamilySamples createFamilySample(Metric metricConfig) {
@@ -50,10 +51,14 @@ public class MetricsCollector extends Collector {
         String unit = metricConfig.getUnit();
         List<String> labelNames = metricConfig.getLabelNames();
         List<String> labelValues = metricConfig.getLabelValues();
-        
+
         Collector.Type type = Collector.Type.valueOf(metricConfig.getType().toUpperCase());
 
-        double value = getValue(metricConfig);
+        Double value = getValue(metricConfig);
+        if (value == null) {
+            LOG.info("Metric {} was ommited due to fetch error ", metricConfig);
+            return null;
+        }
         LOG.debug("Colllecting metric {}", metricConfig);
 
         switch (type) {
@@ -75,14 +80,14 @@ public class MetricsCollector extends Collector {
         }
     }
 
-    protected double getValue(Metric metricConfig) {
+    protected Double getValue(Metric metricConfig) {
         try {
             Eta eta = clientService.getUserVar(InetAddress.getByName(host), metricConfig.getUri());
             chpro.eta.api.client.data.uservar.Value valueXml = eta.getValue();
             LOG.trace("Processing xml data: ", eta.toString());
             BigDecimal divisor = valueXml.getScaleFactor() == 0 ? BigDecimal.ONE : BigDecimal.valueOf(valueXml.getScaleFactor());
             BigDecimal value = BigDecimal.valueOf(Double.parseDouble(valueXml.getValue()));
-            
+
             String unit = metricConfig.getUnit();
             if (UNIT_STATUS.equalsIgnoreCase(unit)) {
                 metricConfig.getLabelNames().add(UNIT_STATUS);
@@ -93,7 +98,7 @@ public class MetricsCollector extends Collector {
             }
         } catch (Exception e) {
             LOG.error("Was not able to get value of " + metricConfig, e);
-            return 0.0d;
+            return null;
         }
 
     }
