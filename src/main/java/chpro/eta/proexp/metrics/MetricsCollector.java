@@ -80,8 +80,9 @@ public class MetricsCollector extends Collector {
         try {
             Eta eta = clientService.getUserVar(InetAddress.getByName(host), metricConfig.getUri());
             chpro.eta.api.client.data.uservar.Value valueXml = eta.getValue();
+            LOG.trace("Processing xml data: ", eta.toString());
             BigDecimal divisor = valueXml.getScaleFactor() == 0 ? BigDecimal.ONE : BigDecimal.valueOf(valueXml.getScaleFactor());
-            BigDecimal value = BigDecimal.valueOf(valueXml.getValue());
+            BigDecimal value = BigDecimal.valueOf(Double.parseDouble(valueXml.getValue()));
             
             String unit = metricConfig.getUnit();
             if (UNIT_STATUS.equalsIgnoreCase(unit)) {
@@ -91,7 +92,7 @@ public class MetricsCollector extends Collector {
             } else {
                 return value.divide(divisor).doubleValue();
             }
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             LOG.error("Was not able to get value of " + metricConfig, e);
             return 0.0d;
         }
