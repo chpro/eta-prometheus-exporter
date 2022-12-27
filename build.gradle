@@ -43,12 +43,12 @@ micronaut {
     }
 }
 
-
+// https://github.com/micronaut-projects/micronaut-gradle-plugin/issues/214
 dockerBuild {
   inputDir = file("${buildDir}/docker/main")
 }
 
-// https://github.com/micronaut-projects/micronaut-gradle-plugin/issues/214
+
 task fixIssue214(type: Copy){
     from ('Dockerfile')
     into "${buildDir}/docker/main"
