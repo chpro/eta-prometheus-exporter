@@ -53,6 +53,7 @@ micronaut {
 // https://github.com/micronaut-projects/micronaut-gradle-plugin/issues/214
 dockerBuild {
   inputDir = file("${buildDir}/docker/main")
+  images = ["ghcr.io/chpro/${project.name}:${project.version}"]
 }
 
 
