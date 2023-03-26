@@ -16,6 +16,8 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1.0.6
       - name: Build with Gradle
+        env:
+          PACKAGES_READ_TOKEN: ${{ secrets.PACKAGES_READ_TOKEN }}
         uses: gradle/gradle-build-action@v2.4.0
         with:
           arguments: build
