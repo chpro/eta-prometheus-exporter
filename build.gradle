@@ -7,7 +7,14 @@ version = "0.1"
 group = "chpro.eta.proexp"
 
 repositories {
-    mavenLocal()
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/chpro/eta-api-java"
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("gpr.key") ?: System.getenv("PACKAGES_READ_TOKEN")
+        }
+    }
     mavenCentral()
 }
 
