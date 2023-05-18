@@ -129,7 +129,7 @@ eta:
           unit: celsius
 # heating circuit 1 (HK) /120/10101
         -
-          uri: /120/10101/0/11060/2002
+          uri: /120/10101/0/0/19404
           type: gauge
           name: eta_heating_circuits_radiators_status
           help: Indicates status of heating circuit for raditors. off (0.0) or on (1.0)
@@ -167,7 +167,7 @@ eta:
           unit: rh
 # heating circuit 2 (FBH) /120/10102
         -
-          uri: /120/10102/0/11060/2002
+          uri: /120/10102/0/0/19404
           type: gauge
           name: eta_heating_circuits_underfloor_status
           help: Indicates status of circuit for underflow heating. off (0.0) or on (1.0)
