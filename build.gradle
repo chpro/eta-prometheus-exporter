@@ -1,9 +1,9 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.7.8"
+    id("io.micronaut.application") version "3.7.9"
 }
 
-version = "0.1"
+version = "0.2"
 group = "chpro.eta.proexp"
 
 repositories {
@@ -36,8 +36,8 @@ application {
     mainClass.set("chpro.eta.proexp.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-    targetCompatibility = JavaVersion.toVersion("11")
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }
 
 graalvmNative.toolchainDetection = false
