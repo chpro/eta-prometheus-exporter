@@ -40,7 +40,7 @@ public class MetricsCollector extends Collector {
     @Override
     public List<MetricFamilySamples> collect() {
         LOG.info(String.format("Starting to collect %d metrics", metrics.getMetrics().size()));
-        return metrics.getMetrics().stream().map(metric -> createFamilySample(metric)).collect(Collectors.toList());
+        return metrics.getMetrics().stream().map(metric -> createFamilySample(metric)).filter(x -> x != null).collect(Collectors.toList());
     }
 
     protected MetricFamilySamples createFamilySample(Metric metricConfig) {
@@ -56,7 +56,7 @@ public class MetricsCollector extends Collector {
 
         Double value = getValue(metricConfig);
         if (value == null) {
-            LOG.info("Metric {} was ommited due to fetch error ", metricConfig);
+            LOG.warn("Metric {} was ommited due to fetch error ", metricConfig);
             return null;
         }
         LOG.debug("Colllecting metric {}", metricConfig);
