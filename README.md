@@ -29,7 +29,7 @@ eta:
             - name2
           label-values:
             - value_for_name1
-            - value_for_name22
+            - value_for_name2
           unit: iso units (grams, celsius ..); status has special logic. It is calculated by (value - advTextOffset) additionally content of attribute text is added as label with name status (e.g. status = on)
         
 ...
@@ -43,12 +43,20 @@ The uri from xml without prefix `/usr/var` or `/usr/varinfo` e.g. `/40/10021/0/0
 
 Static labels which should be added to the metric. Lists need to have same length
 
-## Micronaut 3.7.4 Documentation
+## Run docker container
 
-- [User Guide](https://docs.micronaut.io/3.7.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.7.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.7.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+### with default config
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
+```
+docker run -d -p 8080:8080 --restart=always --name eta-prometheus-exporter ghcr.io/chpro/eta-prometheus-exporter:latest
+```
+
+### with custom configuration
+
+make a copy of `src/main/resources/application.yml` and adapt it to your needs
+
+```
+docker run -v /pah/to/application.yml:/home/app/resources/application.yml -d -p 8080:8080 --restart=always --name eta-prometheus-exporter ghcr.io/chpro/eta-prometheus-exporter:latest
+```
+
+Replace `/pah/to/application.yml` with absolute path to the copied file

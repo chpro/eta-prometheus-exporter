@@ -20,7 +20,7 @@ eta:
 #            - name2
 #          label-values:
 #            - value_for_name1
-#            - value_for_name22
+#            - value_for_name2
 #          unit: iso units (grams, celsius ..); status has special logic. It is calculated by (value - advTextOffset) additionally content of attribute text is added as label with name status (e.g. status = on)
         -
           uri: /120/10601/0/0/12197
@@ -59,6 +59,12 @@ eta:
           name: eta_boiler_vacuum_turbine_request_status
           help: Indicates if vaccum turbine is off (0.0) or on (1.0)
           unit: status
+        -
+          uri: /40/10021/0/0/12154
+          type: gauge
+          name: eta_stoker_runtime_seconds
+          help: Stoker runtime in seconds which is used to calculate consumed pellets from stock with Stoker time per kg (/40/10021/0/0/12043)
+          unit: seconds
 # boiler
         -
           uri: /40/10021/0/0/12000
