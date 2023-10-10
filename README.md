@@ -47,8 +47,10 @@ Static labels which should be added to the metric. Lists need to have same lengt
 
 ### with default config
 
+Replace `IP_ADDRESS` with the IP or hostname of the etatouch device.
+
 ```
-docker run -d -p 8080:8080 --restart=always --name eta-prometheus-exporter ghcr.io/chpro/eta-prometheus-exporter:latest
+docker run -d -p 8080:8080 -e eta_prometheus_exporter_host=IP_ADDRESS --restart=always --name eta-prometheus-exporter ghcr.io/chpro/eta-prometheus-exporter:latest
 ```
 
 ### with custom configuration
